@@ -4,10 +4,12 @@ autoload throw
 # search for the repo on GitHub, fork it if it isn't mine, clone it onto my
 # machine, and then open it in VSCodium.
 function dev() {
+    setopt EXTENDED_GLOB
+
     if [[ -d ~/dev/$1 ]]; then
         code ~/dev/$1
     else
-        if [[ -d ~/dev/*/$1 ]]; then
+        if [[ -n ~/dev/*/$1(#qN) ]]; then
             code ~/dev/*/$1
         else
             if [[ $1 =~ "^([^/]*)/([^/].*)$" ]]; then
@@ -38,4 +40,6 @@ function dev() {
             fi
         fi
     fi
+
+    unsetopt EXTENDED_GLOB
 }
