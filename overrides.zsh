@@ -1,3 +1,6 @@
+#************************#
+# Oh My Zsh - git plugin #
+#************************#
 alias gca='git add --all && git commit -v'
 alias 'gca!'='git add --all && git commit -v --amend'
 alias gcam='git add --all && git commit -m'
