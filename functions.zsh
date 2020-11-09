@@ -1,5 +1,6 @@
 autoload throw
 
+
 # Opens a local repo in VSCodium if it exists on my machine. If it doesn't,
 # searches for the repo on GitHub, forks it if it isn't mine, clones it onto my
 # machine, and then opens it in VSCodium.
@@ -31,10 +32,11 @@ function dev() {
         fi
     else
         if [[ -d ~/dev/*/$1(#qN) ]]; then
-            code ~/dev/*/$1
+            # Parse symlinks so VSCodium git integration doesn't get confused
+            (readlink ~/dev/*/"$1" || echo ~/dev/*/"$1") | { read dir; code "$dir"; }
         else
             if gh repo clone $1 -- ~/dev/tywmick/$1; then
-                code ~/dev/tywmick/$1
+                (readlink ~/dev/tywmick/"$1" || echo ~/dev/tywmick/"$1") | { read dir; code "$dir"; }
             else
                 throw
             fi
