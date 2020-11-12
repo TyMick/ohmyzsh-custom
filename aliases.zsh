@@ -1,4 +1,4 @@
-alias aliases="alias-finder"
+alias aliases="alias-finder -l"
 
 alias deploy="git push; npm run deploy"
 
