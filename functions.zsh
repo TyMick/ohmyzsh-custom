@@ -20,7 +20,7 @@ function dev() {
                 fi
             else
                 if gh repo fork $1 --clone=false; then
-                    if gh repo clone tywmick/$match[2] -- ~/dev/$1 --depth 1; then
+                    if gh repo clone tywmick/$match[2] -- ~/dev/$1; then
                         code ~/dev/$1
                     else
                         throw
