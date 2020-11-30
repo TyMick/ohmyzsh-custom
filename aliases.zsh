@@ -2,6 +2,8 @@ alias aliases='alias-finder -l'
 
 alias deploy='git push; npm run deploy'
 
+alias firefox='/Applications/Firefox.app/Contents/MacOS/firefox'
+
 alias gcaa='git add --all && git commit -v'
 alias 'gcaa!'='git add --all && git commit -v --amend'
 alias gcaam='git add --all && git commit -m'
