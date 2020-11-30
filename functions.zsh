@@ -69,3 +69,14 @@ function url() {
 
     echo "[InternetShortcut]" > "$dest" && echo "URL=$url" >> "$dest"
 }
+
+#==================================== web =====================================#
+# Initiates a web search utilizing DuckDuckGo bangs or opens a URL in the
+# default browser.
+function web() {
+    if [[ "$*" =~ "^https?://" ]]; then
+        open "$*"
+    else
+        open "https://duckduckgo.com/?q=!$*"
+    fi
+}
