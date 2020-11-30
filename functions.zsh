@@ -23,9 +23,9 @@ function dev() {
                 if gh repo fork "$1" --clone=true; then
                     code ~/dev/"$1"
                 else
+                    cd -
                     throw
                 fi
-                cd -
             fi
         fi
     else
