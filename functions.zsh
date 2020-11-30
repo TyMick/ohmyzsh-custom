@@ -1,6 +1,6 @@
 autoload throw
 
-
+#==================================== dev =====================================#
 # Opens a local repo in VSCodium if it exists on my machine. If it doesn't,
 # searches for the repo on GitHub, forks it if it isn't mine, clones it onto my
 # machine, and then opens it in VSCodium.
@@ -44,7 +44,7 @@ function dev() {
     unsetopt EXTENDED_GLOB
 }
 
-
+#==================================== omzc ====================================#
 # Opens my Oh My Zsh custom folder, then applies the changes once I'm finished
 # editing.
 function omzc() {
@@ -52,9 +52,9 @@ function omzc() {
     exec zsh
 }
 
-
+#==================================== url =====================================#
 # Creates a .url file in the current directory.
-function url {
+function url() {
     if [[ "$2" ]]; then
         url="$2"
         if [[ "$1" == *.url ]]; then
