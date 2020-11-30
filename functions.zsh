@@ -7,7 +7,7 @@ autoload throw
 function dev() {
     setopt EXTENDED_GLOB
 
-    if [[ $1 =~ "^([^/]*)/([^/].*)$" ]]; then
+    if [[ $1 =~ "^([^/]*)/([^/]*)$" ]]; then
         if [[ -d ~/dev/"$1" ]]; then
             code ~/dev/"$1"
         else
@@ -28,7 +28,7 @@ function dev() {
                 fi
             fi
         fi
-    else
+    elif [[ $1 =~ "^[^/]*$" ]]; then
         if [[ -d ~/dev/*/$1(#qN) ]]; then
             # Parse symlinks so VSCodium git integration doesn't get confused
             (readlink ~/dev/*/"$1" || echo ~/dev/*/"$1") | { read dir; code "$dir"; }
@@ -39,9 +39,25 @@ function dev() {
                 throw
             fi
         fi
+    else
+        throw
     fi
 
     unsetopt EXTENDED_GLOB
+}
+
+#================================== dev-link ==================================#
+# Symlinks the current directory into my dev folder hierarchy.
+function dev-link() {
+    if [[ `git config --local remote.upstream.url` =~ "^https?://(www\.)?github.com/([^/]*)/([^/(\.git)]*)" ]]; then
+        mkdir -p ~/dev/$match[2]
+        ln -s "$PWD" ~/dev/$match[2]/$match[3]
+    elif [[ `git config --local remote.origin.url` =~ "^https?://(www\.)?github.com/([^/]*)/([^/(\.git)]*)" ]]; then
+        mkdir -p ~/dev/$match[2]
+        ln -s "$PWD" ~/dev/$match[2]/$match[3]
+    else
+        throw
+    fi
 }
 
 #==================================== omzc ====================================#
