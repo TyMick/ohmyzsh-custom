@@ -8,26 +8,24 @@ function dev() {
     setopt EXTENDED_GLOB
 
     if [[ $1 =~ "^([^/]*)/([^/].*)$" ]]; then
-        if [[ -d ~/dev/$1 ]]; then
-            code ~/dev/$1
+        if [[ -d ~/dev/"$1" ]]; then
+            code ~/dev/"$1"
         else
             mkdir -p ~/dev/$match[1]
             if [[ $match[1] == "tywmick" ]]; then
-                if gh repo clone $1 -- ~/dev/$1; then
-                    code ~/dev/$1
+                if gh repo clone "$1" -- ~/dev/"$1"; then
+                    code ~/dev/"$1"
                 else
                     throw
                 fi
             else
-                if gh repo fork $1 --clone=false; then
-                    if gh repo clone tywmick/$match[2] -- ~/dev/$1; then
-                        code ~/dev/$1
-                    else
-                        throw
-                    fi
+                cd ~/dev/$match[1]
+                if gh repo fork "$1" --clone=true; then
+                    code ~/dev/"$1"
                 else
                     throw
                 fi
+                cd -
             fi
         fi
     else
