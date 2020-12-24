@@ -1,5 +1,7 @@
 alias aliases='alias-finder -l'
 
+alias catalog='yarn catalog-start'
+
 alias deploy='git push; npm run deploy'
 
 alias firefox='/Applications/Firefox.app/Contents/MacOS/firefox'
