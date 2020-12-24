@@ -1,6 +1,6 @@
 autoload throw
 
-#==================================== dev =====================================#
+# =================================== dev ==================================== #
 # Opens a local repo in VSCodium if it exists on my machine. If it doesn't,
 # searches for the repo on GitHub, forks it if it isn't mine, clones it onto my
 # machine, and then opens it in VSCodium.
@@ -46,7 +46,7 @@ function dev() {
     unsetopt EXTENDED_GLOB
 }
 
-#================================== dev-link ==================================#
+# ================================= dev-link ================================= #
 # Symlinks the current directory into my dev folder hierarchy.
 function dev-link() {
     if [[ `git config --local remote.upstream.url` =~ "^https?://(www\.)?github.com/([^/]*)/([^/(\.git)]*)" ]]; then
@@ -60,7 +60,7 @@ function dev-link() {
     fi
 }
 
-#==================================== omzc ====================================#
+# =================================== omzc =================================== #
 # Opens my Oh My Zsh custom folder, then applies the changes once I'm finished
 # editing.
 function omzc() {
@@ -68,7 +68,7 @@ function omzc() {
     exec zsh
 }
 
-#==================================== url =====================================#
+# =================================== url ==================================== #
 # Creates a .url file in the current directory.
 function url() {
     if [[ "$2" ]]; then
@@ -86,7 +86,7 @@ function url() {
     echo "[InternetShortcut]" > "$dest" && echo "URL=$url" >> "$dest"
 }
 
-#==================================== web =====================================#
+# =================================== web ==================================== #
 # Initiates a web search utilizing DuckDuckGo bangs or opens a URL in the
 # default browser.
 function web() {
