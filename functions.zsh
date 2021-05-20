@@ -8,20 +8,23 @@ function dev() {
     setopt EXTENDED_GLOB
 
     if [[ $1 =~ "^([^/]*)/([^/]*)$" ]]; then
-        if [[ -d ~/dev/"$1" ]]; then
-            code ~/dev/"$1"
+        if open ~/code/"$1".code-workspace; then
+        elif [[ -d ~/code/"$1" ]]; then
+            # Parse symlinks so VSCodium git integration doesn't get confused
+            (readlink ~/code/"$1" || echo ~/code/"$1") | { read dir; codium "$dir"; }
         else
-            mkdir -p ~/dev/$match[1]
+            mkdir -p ~/code/$match[1]
             if [[ $match[1] == "tywmick" ]]; then
-                if gh repo clone "$1" -- ~/dev/"$1"; then
-                    code ~/dev/"$1"
+                if gh repo clone "$1" -- ~/code/"$1"; then
+                    codium ~/code/"$1"
                 else
                     throw
                 fi
             else
-                cd ~/dev/$match[1]
+                cd ~/code/$match[1]
                 if gh repo fork "$1" --clone=true; then
-                    code ~/dev/"$1"
+                    cd -
+                    codium ~/code/"$1"
                 else
                     cd -
                     throw
@@ -29,12 +32,13 @@ function dev() {
             fi
         fi
     elif [[ $1 =~ "^[^/]*$" ]]; then
-        if [[ -d ~/dev/*/$1(#qN) ]]; then
+        if open ~/code/*/"$1".code-workspace; then
+        elif [[ -d ~/code/*/$1(#qN) ]]; then
             # Parse symlinks so VSCodium git integration doesn't get confused
-            (readlink ~/dev/*/"$1" || echo ~/dev/*/"$1") | { read dir; code "$dir"; }
+            (readlink ~/code/*/"$1" || echo ~/code/*/"$1") | { read dir; codium "$dir"; }
         else
-            if gh repo clone $1 -- ~/dev/tywmick/$1; then
-                (readlink ~/dev/tywmick/"$1" || echo ~/dev/tywmick/"$1") | { read dir; code "$dir"; }
+            if gh repo clone tywmick/$1 -- ~/code/tywmick/$1; then
+                codium ~/code/tywmick/"$1"
             else
                 throw
             fi
@@ -50,11 +54,11 @@ function dev() {
 # Symlinks the current directory into my dev folder hierarchy.
 function dev-link() {
     if [[ `git config --local remote.upstream.url` =~ "^https?://(www\.)?github.com/([^/]*)/([^/(\.git)]*)" ]]; then
-        mkdir -p ~/dev/$match[2]
-        ln -s "$PWD" ~/dev/$match[2]/$match[3]
+        mkdir -p ~/code/$match[2]
+        ln -s "$PWD" ~/code/$match[2]/$match[3]
     elif [[ `git config --local remote.origin.url` =~ "^https?://(www\.)?github.com/([^/]*)/([^/(\.git)]*)" ]]; then
-        mkdir -p ~/dev/$match[2]
-        ln -s "$PWD" ~/dev/$match[2]/$match[3]
+        mkdir -p ~/code/$match[2]
+        ln -s "$PWD" ~/code/$match[2]/$match[3]
     else
         throw
     fi
@@ -64,7 +68,7 @@ function dev-link() {
 # Opens my Oh My Zsh custom folder, then applies the changes once I'm finished
 # editing.
 function omzc() {
-    code ~/.oh-my-zsh/custom --new-window --wait
+    codium ~/.oh-my-zsh/custom --new-window --wait
     exec zsh
 }
 
