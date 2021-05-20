@@ -1,5 +1,11 @@
 autoload throw
 
+# ================================== crpick ================================== #
+# Picks a lucky teammate for code review.
+function crpick() {
+    echo "$TEAMMATES[RANDOM % $#TEAMMATES + 1]"
+}
+
 # =================================== dev ==================================== #
 # Opens a local repo in VSCodium if it exists on my machine. If it doesn't,
 # searches for the repo on GitHub, forks it if it isn't mine, clones it onto my
