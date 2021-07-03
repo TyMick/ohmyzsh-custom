@@ -9,6 +9,7 @@ alias 'gcaam!'='git add --all && git commit --amend -m'
 alias 'gcaan!'='git add --all && git commit -v --no-edit --amend'
 alias 'gcaans!'='git add --all && git commit -v -s --no-edit --amend'
 alias 'gcmsg!'='git commit --amend -m'
+alias gstaa='git stash --all --include-untracked'
 
 alias pip='pip3'
 alias python='python3'
