@@ -3,6 +3,9 @@ export EDITOR="codium --new-window --wait"
 # Homebrew
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 
+# n
+export N_PRESERVE_NPM=1
+
 # .NET SDK
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
