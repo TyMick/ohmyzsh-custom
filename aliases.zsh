@@ -15,4 +15,4 @@ alias pip='pip3'
 alias python='python3'
 alias py='python3'
 
-alias upgrade-all='brew upgrade; npm -g update; yarn global upgrade'
+alias upgrade-all='brew upgrade; n lts; npm -g update;'
