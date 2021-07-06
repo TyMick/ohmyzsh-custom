@@ -1,4 +1,4 @@
-export EDITOR="codium --new-window --wait"
+export EDITOR="code --new-window --wait"
 
 # Homebrew
 export HOMEBREW_NO_INSTALL_CLEANUP=1

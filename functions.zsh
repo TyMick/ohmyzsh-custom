@@ -17,12 +17,12 @@ function dev() {
     if open ~/code/"$1".code-workspace; then
     elif [[ -d ~/code/"$1" ]]; then
       # Parse symlinks so VSCodium git integration doesn't get confused
-      (readlink ~/code/"$1" || echo ~/code/"$1") | { read dir; codium "$dir"; }
+      (readlink ~/code/"$1" || echo ~/code/"$1") | { read dir; code "$dir"; }
     else
       mkdir -p ~/code/$match[1]
       if [[ $match[1] == "tywmick" ]]; then
         if gh repo clone "$1" -- ~/code/"$1"; then
-          codium ~/code/"$1"
+          code ~/code/"$1"
         else
           throw
         fi
@@ -30,7 +30,7 @@ function dev() {
         cd ~/code/$match[1]
         if gh repo fork "$1" --clone=true; then
           cd -
-          codium ~/code/"$1"
+          code ~/code/"$1"
         else
           cd -
           throw
@@ -41,10 +41,10 @@ function dev() {
     if open ~/code/*/"$1".code-workspace; then
     elif [[ -d ~/code/*/$1(#qN) ]]; then
       # Parse symlinks so VSCodium git integration doesn't get confused
-      (readlink ~/code/*/"$1" || echo ~/code/*/"$1") | { read dir; codium "$dir"; }
+      (readlink ~/code/*/"$1" || echo ~/code/*/"$1") | { read dir; code "$dir"; }
     else
       if gh repo clone tywmick/$1 -- ~/code/tywmick/$1; then
-        codium ~/code/tywmick/"$1"
+        code ~/code/tywmick/"$1"
       else
         throw
       fi
@@ -74,7 +74,7 @@ function dev-link() {
 # Opens my Oh My Zsh custom folder, then applies the changes once I'm finished
 # editing.
 function omzc() {
-  codium ~/.oh-my-zsh/custom --new-window --wait
+  code ~/.oh-my-zsh/custom --new-window --wait
   exec zsh
 }
 
