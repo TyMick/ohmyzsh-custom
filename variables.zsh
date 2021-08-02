@@ -1,5 +1,8 @@
 export EDITOR="code --new-window --wait"
 
+# Gatsby
+export GATSBY_TELEMETRY_DISABLED=1
+
 # Homebrew
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 
