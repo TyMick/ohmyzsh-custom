@@ -15,5 +15,5 @@ alias pip='pip3'
 alias python='python3'
 alias py='python3'
 
-alias upgrade-all='n lts; npm-check --global --update; brew upgrade;'
+alias upgrade-all='brew upgrade; n lts; npm-check --global --update;'
 alias outdated='brew update && brew outdated'
