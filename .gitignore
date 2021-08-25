@@ -1,4 +1,4 @@
-plugins/example/example.plugin.zsh
+plugins/example
 themes/example.zsh-theme
 example.zsh
 aa-secrets.zsh

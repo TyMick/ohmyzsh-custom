@@ -12,6 +12,7 @@ function crpick() {
 # machine, and then opens it in VSCodium.
 function dev() {
   setopt EXTENDED_GLOB
+  local my_username="$GITHUB_USERNAME"
 
   if [[ $1 =~ "^([^/]*)/([^/]*)$" ]]; then
     if open ~/code/"$1".code-workspace; then
@@ -20,7 +21,7 @@ function dev() {
       (readlink ~/code/"$1" || echo ~/code/"$1") | { read dir; code "$dir"; }
     else
       mkdir -p ~/code/$match[1]
-      if [[ $match[1] == "tywmick" ]]; then
+      if [[ $match[1] == "$my_username" ]]; then
         if gh repo clone "$1" -- ~/code/"$1"; then
           code ~/code/"$1"
         else
@@ -38,13 +39,13 @@ function dev() {
       fi
     fi
   elif [[ $1 =~ "^[^/]*$" ]]; then
-    if open ~/code/*/"$1".code-workspace; then
+    if open ~/code/*/$1.code-workspace; then
     elif [[ -d ~/code/*/$1(#qN) ]]; then
       # Parse symlinks so VSCodium git integration doesn't get confused
       (readlink ~/code/*/"$1" || echo ~/code/*/"$1") | { read dir; code "$dir"; }
     else
-      if gh repo clone tywmick/$1 -- ~/code/tywmick/$1; then
-        code ~/code/tywmick/"$1"
+      if gh repo clone "$my_username/$1" -- ~/code/"$my_username/$1"; then
+        code ~/code/"$my_username/$1"
       else
         throw
       fi
