@@ -15,7 +15,7 @@ function dev() {
   local my_username="$GITHUB_USERNAME"
 
   if [[ $1 =~ "^([^/]*)/([^/]*)$" ]]; then
-    if open ~/code/"$1".code-workspace; then
+    if open ~/code/"$1"/.vscode/$match[2].code-workspace; then
     elif [[ -d ~/code/"$1" ]]; then
       # Parse symlinks so VSCodium git integration doesn't get confused
       (readlink ~/code/"$1" || echo ~/code/"$1") | { read dir; code "$dir"; }
@@ -39,7 +39,7 @@ function dev() {
       fi
     fi
   elif [[ $1 =~ "^[^/]*$" ]]; then
-    if open ~/code/*/$1.code-workspace; then
+    if open ~/code/*/$1/.vscode/$1.code-workspace; then
     elif [[ -d ~/code/*/$1(#qN) ]]; then
       # Parse symlinks so VSCodium git integration doesn't get confused
       (readlink ~/code/*/"$1" || echo ~/code/*/"$1") | { read dir; code "$dir"; }
