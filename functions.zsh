@@ -60,10 +60,16 @@ function dev() {
 # ================================= dev-link ================================= #
 # Symlinks the current directory into my dev folder hierarchy.
 function dev-link() {
-  if [[ `git config --local remote.upstream.url` =~ "^https?://(www\.)?github.com/([^/]*)/([^/(\.git)]*)" ]]; then
+  if [[ `git config --local remote.upstream.url` =~ '^https?://(www\.)?github.com/([^/]*)/([^/]*)\.git' ]]; then
     mkdir -p ~/code/$match[2]
     ln -s "$PWD" ~/code/$match[2]/$match[3]
-  elif [[ `git config --local remote.origin.url` =~ "^https?://(www\.)?github.com/([^/]*)/([^/(\.git)]*)" ]]; then
+  elif [[ `git config --local remote.upstream.url` =~ '^https?://(www\.)?github.com/([^/]*)/([^/]*)' ]]; then
+    mkdir -p ~/code/$match[2]
+    ln -s "$PWD" ~/code/$match[2]/$match[3]
+  elif [[ `git config --local remote.origin.url` =~ '^https?://(www\.)?github.com/([^/]*)/([^/]*)\.git' ]]; then
+    mkdir -p ~/code/$match[2]
+    ln -s "$PWD" ~/code/$match[2]/$match[3]
+  elif [[ `git config --local remote.origin.url` =~ '^https?://(www\.)?github.com/([^/]*)/([^/]*)' ]]; then
     mkdir -p ~/code/$match[2]
     ln -s "$PWD" ~/code/$match[2]/$match[3]
   else
