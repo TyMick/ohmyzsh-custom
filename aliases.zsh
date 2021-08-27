@@ -11,6 +11,8 @@ alias 'gcaans!'='git add --all && git commit -v -s --no-edit --amend'
 alias 'gcmsg!'='git commit --amend -m'
 alias gstaa='git stash --all --include-untracked'
 
+alias mmv='noglob zmv -W'
+
 alias pip='pip3'
 alias python='python3'
 alias py='python3'
