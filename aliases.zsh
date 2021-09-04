@@ -1,6 +1,7 @@
 alias aliases='alias-finder -l'
 
 alias firefox='/Applications/Firefox.app/Contents/MacOS/firefox'
+alias ffprofile='firefox -profilemanager'
 
 alias gcaa='git add --all && git commit -v'
 alias 'gcaa!'='git add --all && git commit -v --amend'
