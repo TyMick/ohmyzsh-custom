@@ -10,6 +10,8 @@ alias 'gcaam!'='git add --all && git commit --amend -m'
 alias 'gcaan!'='git add --all && git commit -v --no-edit --amend'
 alias 'gcaans!'='git add --all && git commit -v -s --no-edit --amend'
 alias 'gcmsg!'='git commit --amend -m'
+alias gdsta='git stash push --keep-index && git stash push && git stash pop 1'
+alias gdstaa='git stash --all --include-untracked --keep-index && git stash --all --include-untracked && git stash pop 1'
 alias gstaa='git stash --all --include-untracked'
 
 alias mmv='noglob zmv -W'

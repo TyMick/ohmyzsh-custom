@@ -77,6 +77,22 @@ function dev-link() {
   fi
 }
 
+# ================================== gdstaam ================================== #
+# Double stash all with message
+function gdstaam() {
+  git stash --all --include-untracked --keep-index
+  git stash --all --include-untracked --message "$1"
+  git stash pop 1
+}
+
+# ================================== gdstam ================================== #
+# Double stash with message
+function gdstam() {
+  git stash push --keep-index
+  git stash push --message "$1"
+  git stash pop 1
+}
+
 # =================================== omzc =================================== #
 # Opens my Oh My Zsh custom folder, then applies the changes once I'm finished
 # editing.
