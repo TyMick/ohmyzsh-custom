@@ -1,3 +1,8 @@
+alias rbub='npm run rebase-bubble'
+
+function gcamcp() {
+  git commit -a -m "Add Checkpoint $1"
+}
 function gcbcp() {
   git checkout -b "Checkpoint_$1"
 }
