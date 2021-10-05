@@ -1,12 +1,10 @@
 autoload throw
 
-# ================================== crpick ================================== #
 # Picks a lucky teammate for code review.
 function crpick() {
   echo "$TEAMMATES[RANDOM % $#TEAMMATES + 1]"
 }
 
-# =================================== dev ==================================== #
 # Opens a local repo in VSCodium if it exists on my machine. If it doesn't,
 # searches for the repo on GitHub, forks it if it isn't mine, clones it onto my
 # machine, and then opens it in VSCodium.
@@ -57,7 +55,6 @@ function dev() {
   unsetopt EXTENDED_GLOB
 }
 
-# ================================= dev-link ================================= #
 # Symlinks the current directory into my dev folder hierarchy.
 function dev-link() {
   if [[ `git config --local remote.upstream.url` =~ '^https?://(www\.)?github.com/([^/]*)/([^/]*)\.git' ]]; then
@@ -77,7 +74,6 @@ function dev-link() {
   fi
 }
 
-# ================================== gdstaam ================================== #
 # Double stash all with message
 function gdstaam() {
   git stash --all --include-untracked --keep-index
@@ -85,7 +81,6 @@ function gdstaam() {
   git stash pop 1
 }
 
-# ================================== gdstam ================================== #
 # Double stash with message
 function gdstam() {
   git stash push --keep-index
@@ -93,7 +88,6 @@ function gdstam() {
   git stash pop 1
 }
 
-# =================================== omzc =================================== #
 # Opens my Oh My Zsh custom folder, then applies the changes once I'm finished
 # editing.
 function omzc() {
@@ -101,7 +95,6 @@ function omzc() {
   exec zsh
 }
 
-# =================================== url ==================================== #
 # Creates a .url file in the current directory.
 function url() {
   if [[ "$2" ]]; then
@@ -118,14 +111,3 @@ function url() {
 
   echo "[InternetShortcut]" > "$dest" && echo "URL=$url" >> "$dest"
 }
-
-# # =================================== web ==================================== #
-# # Initiates a web search utilizing DuckDuckGo bangs or opens a URL in the
-# # default browser.
-# function web() {
-#   if [[ "$*" =~ "^https?://" ]]; then
-#     open "$*"
-#   else
-#     web_search duckduckgo "!$*"
-#   fi
-# }
