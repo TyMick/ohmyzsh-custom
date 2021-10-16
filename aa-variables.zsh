@@ -5,9 +5,6 @@
 export EDITOR="code --new-window --wait"
 export GITHUB_USERNAME="TyMick"
 
-# Homebrew
-export HOMEBREW_NO_INSTALL_CLEANUP=1
-
 # n
 export N_PRESERVE_NPM=1
 
