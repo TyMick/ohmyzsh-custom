@@ -5,6 +5,9 @@
 export EDITOR="code --new-window --wait"
 export GITHUB_USERNAME="TyMick"
 
+# .NET
+export DOTNET_ROOT="/usr/local/opt/dotnet/libexec"
+
 # n
 export N_PRESERVE_NPM=1
 
