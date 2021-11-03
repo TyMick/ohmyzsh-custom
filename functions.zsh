@@ -104,6 +104,11 @@ function omzc() {
   exec zsh
 }
 
+# Launch JetBrains Rider
+function rider() {
+  open -na "Rider.app" --args "$@"
+}
+
 # Creates a .url file in the current directory.
 function url() {
   if [[ "$2" ]]; then
