@@ -22,4 +22,4 @@ alias pip='pip3'
 alias python='python3'
 alias py='python3'
 
-alias upgrade-all='brew autoremove; brew upgrade; brew autoremove; n lts; yarn --silent global upgrade --latest;'
+alias update='brew autoremove; brew upgrade; brew autoremove; n lts; yarn --silent global upgrade --latest;'
