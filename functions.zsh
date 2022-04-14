@@ -5,15 +5,6 @@ function crpick() {
   echo "$TEAMMATES[RANDOM % $#TEAMMATES + 1]"
 }
 
-# Restarts Firefox with a different user.js file
-function fprof() {
-  osascript -e 'quit app "Firefox"'
-  cd ~/code/TyMick/user.js
-  git checkout "$1"
-  cd -
-  osascript -e 'tell application "Firefox" to activate'
-}
-
 # Double stash all with message
 function gdstaam() {
   git stash --all --include-untracked --keep-index
