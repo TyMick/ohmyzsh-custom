@@ -1,5 +1,3 @@
-autoload throw
-
 # Picks a lucky teammate for code review.
 function crpick() {
   echo "$TEAMMATES[RANDOM % $#TEAMMATES + 1]"
