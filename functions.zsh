@@ -1,8 +1,3 @@
-# Picks a lucky teammate for code review.
-function crpick() {
-  echo "$TEAMMATES[RANDOM % $#TEAMMATES + 1]"
-}
-
 # Double stash all with message
 function gdstaam() {
   git stash --all --include-untracked --keep-index
