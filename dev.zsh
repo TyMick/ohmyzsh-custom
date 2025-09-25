@@ -35,9 +35,9 @@ dev() {
   for workspace_path in ${workspace_paths[@]}; do
     if [[ -e "$workspace_path" ]]; then
       code "$workspace_path"
-        return
-      fi
-    done
+      return
+    fi
+  done
 
   # Try opening existing directory
   local dir_paths
@@ -52,12 +52,12 @@ dev() {
   local dir_path
   for dir_path in ${dir_paths[@]}; do
     if [[ -e "$dir_path" ]]; then
-        # Parse symlinks so VS Code git integration doesn't get confused
+      # Parse symlinks so VS Code git integration doesn't get confused
       local resolved_path=$(readlink "$dir_path" 2>/dev/null || echo "$dir_path")
-        code "$resolved_path"
-        return
-      fi
-    done
+      code "$resolved_path"
+      return
+    fi
+  done
 
   # Try forking and cloning repo (or just cloning if the repo's mine)
   if [[ -z "$domain" ]]; then
@@ -81,7 +81,8 @@ dev() {
   
   local current_dir=$(pwd)
   cd ~/code/$domain/$account
-  if gh repo fork $domain/$account/$repo --default-branch-only; then
+  # Automatically decline the clone prompt by piping "n" to the fork command
+  if echo "n" | gh repo fork $domain/$account/$repo --default-branch-only; then
     gh repo sync $domain/$my_username/$repo
     gh repo clone $domain/$my_username/$repo
     cd $repo
