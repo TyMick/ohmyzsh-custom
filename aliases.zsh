@@ -23,5 +23,3 @@ alias mmv='noglob zmv -W'
 alias pip='pip3'
 alias python='python3'
 alias py='python3'
-
-alias update='brew autoremove; brew upgrade; brew autoremove; mas upgrade; n lts; yarn --silent global upgrade --latest;'
