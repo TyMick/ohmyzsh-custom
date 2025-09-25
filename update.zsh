@@ -7,8 +7,8 @@ function update() {
 
   mas upgrade
 
-  fnm install 24
-  fnm use 24
+  fnm install 22
+  fnm use 22
 
   gh extension upgrade --all
 
