@@ -1,4 +1,4 @@
-local github_username="TyMick"
+local my_username="TyMick"
 local my_github_users=(github.com/TyMick git.faithlife.dev/TyMick)
 
 # Open a local repo in VS Code if it exists on my machine. If it doesn't, search for the repo on GitHub, fork it if it isn't mine, clone it onto my machine, and then open it in VS Code.
@@ -69,7 +69,7 @@ dev() {
     domain='github.com'
   fi
   if [[ -z "$account" ]]; then
-    account=$github_username
+    account=$my_username
   fi
   
   mkdir -p ~/code/$domain/$account
@@ -87,8 +87,8 @@ dev() {
   local current_dir=$(pwd)
   cd ~/code/$domain/$account
   if gh repo fork $domain/$account/$repo --default-branch-only; then
-    gh repo sync $domain/$github_username/$repo
-    gh repo clone $domain/$github_username/$repo
+    gh repo sync $domain/$my_username/$repo
+    gh repo clone $domain/$my_username/$repo
     git -C $repo branch -u upstream/$(git_current_branch)
     code $repo
     cd "$current_dir"
