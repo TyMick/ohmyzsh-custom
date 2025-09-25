@@ -9,6 +9,7 @@ dev() {
   local domain=${repo_path[-3]}
 
   # Try opening existing VS Code workspace
+  setopt local_options null_glob
   local workspace_paths
   if [[ -n "$domain" ]]; then
     workspace_paths=(
@@ -32,14 +33,11 @@ dev() {
   
   local workspace_path
   for workspace_path in ${workspace_paths[@]}; do
-    # Expand glob patterns and check if files exist
-    for expanded_path in ${~workspace_path}; do
-      if [[ -e "$expanded_path" ]]; then
-        code "$expanded_path"
+    if [[ -e "$workspace_path" ]]; then
+      code "$workspace_path"
         return
       fi
     done
-  done
 
   # Try opening existing directory
   local dir_paths
@@ -53,16 +51,13 @@ dev() {
   
   local dir_path
   for dir_path in ${dir_paths[@]}; do
-    # Expand glob patterns and check if directories exist
-    for expanded_path in ${~dir_path}; do
-      if [[ -e "$expanded_path" ]]; then
+    if [[ -e "$dir_path" ]]; then
         # Parse symlinks so VS Code git integration doesn't get confused
-        local resolved_path=$(readlink "$expanded_path" 2>/dev/null || echo "$expanded_path")
+      local resolved_path=$(readlink "$dir_path" 2>/dev/null || echo "$dir_path")
         code "$resolved_path"
         return
       fi
     done
-  done
 
   # Try forking and cloning repo (or just cloning if the repo's mine)
   if [[ -z "$domain" ]]; then
