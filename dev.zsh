@@ -86,7 +86,10 @@ dev() {
     
     local current_dir=$(pwd)
     cd ~/code/$domain/$account
-    if gh repo fork $domain/$account/$repo --clone --default-branch-only; then
+    if gh repo fork $domain/$account/$repo --default-branch-only; then
+        gh repo sync $domain/$github_username/$repo
+        gh repo clone $domain/$github_username/$repo
+        git -C $repo branch -u upstream/$(git_current_branch)
         code $repo
         cd "$current_dir"
         return
