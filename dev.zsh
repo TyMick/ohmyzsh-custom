@@ -84,8 +84,9 @@ dev() {
   if gh repo fork $domain/$account/$repo --default-branch-only; then
     gh repo sync $domain/$my_username/$repo
     gh repo clone $domain/$my_username/$repo
-    git -C $repo branch -u upstream/$(git_current_branch)
-    code $repo
+    cd $repo
+    git branch -u upstream/$(git_current_branch)
+    code .
     cd "$current_dir"
     return
   fi
