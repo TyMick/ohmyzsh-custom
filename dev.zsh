@@ -3,10 +3,10 @@ local my_github_users=(github.com/TyMick git.faithlife.dev/TyMick)
 
 # Open a local repo in VS Code if it exists on my machine. If it doesn't, search for the repo on GitHub, fork it if it isn't mine, clone it onto my machine, and then open it in VS Code.
 dev() {
-  local path=(${(s:/:)1})
-  local repo=${path[-1]}
-  local account=${path[-2]}
-  local domain=${path[-3]}
+  local repo_path=(${(s:/:)1})
+  local repo=${repo_path[-1]}
+  local account=${repo_path[-2]}
+  local domain=${repo_path[-3]}
 
   # Try opening existing VS Code workspace
   local workspace_paths
