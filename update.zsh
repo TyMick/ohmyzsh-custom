@@ -10,6 +10,8 @@ function update() {
   fnm install 22
   fnm use 22
 
+  yarn global upgrade --latest
+
   gh extension upgrade --all
 
   exec zsh
