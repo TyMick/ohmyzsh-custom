@@ -13,9 +13,6 @@ export N_PRESERVE_NPM=1
 # Oh My Zsh alias-finder plugin
 export ZSH_ALIAS_FINDER_AUTOMATIC=true
 
-# Himalaya
-export RUST_LOG=error
-
 # disabling telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1
