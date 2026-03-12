@@ -6,7 +6,7 @@ alias enable-shadow='defaults write com.apple.screencapture disable-shadow -bool
 alias firefox='/Applications/Firefox.app/Contents/MacOS/firefox'
 
 alias glom='git pull origin master --rebase'
-alias gloma='git pull origin master --rebase=false'
+alias glomm='git pull origin master --rebase=false'
 
 alias gcaa='git add --all && git commit -v'
 alias 'gcaa!'='git add --all && git commit -v --amend'
