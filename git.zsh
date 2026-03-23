@@ -12,9 +12,15 @@ alias gstaa='git stash --all --include-untracked'
 
 # git switch (shorter alternatives to gsw* from the git plugin)
 alias gs='git switch'
-alias gsc='git switch --create'
 alias gsd='git switch $(git_develop_branch)'
 alias gsm='git switch $(git_main_branch)'
+function gsc() {
+  local branch="$1"
+  if [[ "$PWD" == "$HOME/code/github.com/LogosBible"* ]]; then
+    branch="TyMick/$branch"
+  fi
+  git switch --create "$branch" "${@:2}"
+}
 
 # double-stash
 alias gdsta='git stash push --keep-index && git stash push && git stash pop 1'
