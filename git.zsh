@@ -22,6 +22,8 @@ function gsc() {
   git switch --create "$branch" "${@:2}"
 }
 
+alias gsml='git switch $(git_main_branch) && git pull'
+
 # double-stash
 alias gdsta='git stash push --keep-index && git stash push && git stash pop 1'
 alias gdstaa='git stash --all --include-untracked --keep-index && git stash --all --include-untracked && git stash pop 1'
