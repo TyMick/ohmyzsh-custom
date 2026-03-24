@@ -1,20 +1,3 @@
-alias glomr='git pull origin $(git_main_branch) --rebase'
-alias glomm='git pull origin $(git_main_branch) --rebase=false'
-
-alias gcaa='git add --all && git commit -v'
-alias 'gcaa!'='git add --all && git commit -v --amend'
-alias gcaam='git add --all && git commit -m'
-alias 'gcaam!'='git add --all && git commit --amend -m'
-alias 'gcaan!'='git add --all && git commit -v --no-edit --amend'
-alias 'gcaans!'='git add --all && git commit -v -s --no-edit --amend'
-alias 'gcmsg!'='git commit --amend -m'
-alias gstaa='git stash --all --include-untracked'
-
-unalias grs
-function grs() {
-  git reset --soft "HEAD~$1"
-}
-
 # git branch
 unalias gb gbm gbd gbD
 function gb() {
@@ -50,10 +33,30 @@ function gbD() {
   (( ok )) || git branch --delete --force "$@"
 }
 
-# git switch (shorter alternatives to gsw* from the git plugin)
+# git commit
+alias gcaa='git add --all && git commit -v'
+alias 'gcaa!'='git add --all && git commit -v --amend'
+alias gcaam='git add --all && git commit -m'
+alias 'gcaam!'='git add --all && git commit --amend -m'
+alias 'gcaan!'='git add --all && git commit -v --no-edit --amend'
+alias 'gcaans!'='git add --all && git commit -v -s --no-edit --amend'
+alias 'gcmsg!'='git commit --amend -m'
+
+# git pull
+alias glomr='git pull origin $(git_main_branch) --rebase'
+alias glomm='git pull origin $(git_main_branch) --rebase=false'
+
+# git reset
+unalias grs
+function grs() {
+  git reset --soft "HEAD~$1"
+}
+
+# git switch
 alias gs='git switch'
 alias gsd='git switch $(git_develop_branch)'
 alias gsm='git switch $(git_main_branch)'
+alias gsml='git switch $(git_main_branch) && git pull'
 function gsc() {
   local branch="$1"
   if [[ "$PWD" == "$HOME/code/github.com/LogosBible"* ]]; then
@@ -62,19 +65,17 @@ function gsc() {
   git switch --create "$branch" "${@:2}"
 }
 
-alias gsml='git switch $(git_main_branch) && git pull'
-
+# git stash
+alias gstaa='git stash --all --include-untracked'
 # double-stash
 alias gdsta='git stash push --keep-index && git stash push && git stash pop 1'
 alias gdstaa='git stash --all --include-untracked --keep-index && git stash --all --include-untracked && git stash pop 1'
-
 # Double stash all with message
 function gdstaam() {
   git stash --all --include-untracked --keep-index
   git stash --all --include-untracked --message "$1"
   git stash pop 1
 }
-
 # Double stash with message
 function gdstam() {
   git stash push --keep-index
