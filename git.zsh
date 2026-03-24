@@ -10,7 +10,13 @@ alias 'gcaans!'='git add --all && git commit -v -s --no-edit --amend'
 alias 'gcmsg!'='git commit --amend -m'
 alias gstaa='git stash --all --include-untracked'
 
+unalias grs
+function grs() {
+  git reset --soft "HEAD~$1"
+}
+
 # git branch
+unalias gb gbm gbd gbD
 function gb() {
   if [[ $# -gt 0 && "$1" != -* && "$PWD" == "$HOME/code/github.com/LogosBible"* ]]; then
     git branch "TyMick/$1" "${@:2}"
