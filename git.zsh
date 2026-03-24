@@ -10,6 +10,40 @@ alias 'gcaans!'='git add --all && git commit -v -s --no-edit --amend'
 alias 'gcmsg!'='git commit --amend -m'
 alias gstaa='git stash --all --include-untracked'
 
+# git branch
+function gb() {
+  if [[ $# -gt 0 && "$1" != -* && "$PWD" == "$HOME/code/github.com/LogosBible"* ]]; then
+    git branch "TyMick/$1" "${@:2}"
+  else
+    git branch "$@"
+  fi
+}
+function gbm() {
+  if [[ $# -eq 1 && "$PWD" == "$HOME/code/github.com/LogosBible"* ]]; then
+    local current
+    current=$(git branch --show-current)
+    if [[ "$current" == TyMick/* ]]; then
+      git branch --move "TyMick/$1"
+    else
+      git branch --move "$1"
+    fi
+  else
+    git branch --move "$@"
+  fi
+}
+function gbd() {
+  local ok=0
+  git branch --delete "$@" 2>/dev/null && ok=1
+  git branch --delete "TyMick/$1" "${@:2}" 2>/dev/null && ok=1
+  (( ok )) || git branch --delete "$@"
+}
+function gbD() {
+  local ok=0
+  git branch --delete --force "$@" 2>/dev/null && ok=1
+  git branch --delete --force "TyMick/$1" "${@:2}" 2>/dev/null && ok=1
+  (( ok )) || git branch --delete --force "$@"
+}
+
 # git switch (shorter alternatives to gsw* from the git plugin)
 alias gs='git switch'
 alias gsd='git switch $(git_develop_branch)'
