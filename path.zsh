@@ -2,6 +2,8 @@ export PNPM_HOME="/Users/ty.mick/Library/pnpm"
 
 () {
   local paths_to_prepend=(
+    $([[ -x /opt/homebrew/opt/ruby/bin/gem ]] && echo "$(/opt/homebrew/opt/ruby/bin/gem env gemdir)/bin")
+    "/opt/homebrew/opt/ruby/bin"
     "$PNPM_HOME"
   )
 

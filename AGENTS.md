@@ -24,7 +24,7 @@ Oh My Zsh loads files in this directory **alphabetically**, so:
 | `overrides.zsh` | Replaces or unsets oh-my-zsh built-in aliases/functions (e.g. `grs`) |
 | `path.zsh` | `PATH` additions and tool-root exports (e.g. DOTNET_ROOT) |
 | `rider.zsh` | `rider` function — launches JetBrains Rider |
-| `update.zsh` | `update` function — upgrades everything (nix, brew, mas, fnm, yarn globals, gh extensions) |
+| `update.zsh` | `update` function — upgrades everything (brew, mas, fnm, yarn globals, gem, gh extensions) |
 | `url.zsh` | `url` function — creates a Windows-style `.url` shortcut file |
 
 ## Where to add new things
