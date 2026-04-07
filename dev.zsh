@@ -79,19 +79,14 @@ dev() {
     fi
   done
   
-  local current_dir=$(pwd)
-  cd ~/code/$domain/$account
   # Automatically decline the clone prompt by piping "n" to the fork command
   if echo "n" | gh repo fork $domain/$account/$repo --default-branch-only; then
     gh repo sync $domain/$my_username/$repo
-    gh repo clone $domain/$my_username/$repo
-    cd $repo
-    git branch -u upstream/$(git_current_branch)
-    code .
-    cd "$current_dir"
+    gh repo clone $domain/$my_username/$repo ~/code/$domain/$account/$repo
+    git -C ~/code/$domain/$account/$repo branch -u upstream/$(git -C ~/code/$domain/$account/$repo symbolic-ref --short HEAD)
+    code ~/code/$domain/$account/$repo
     return
   fi
-  cd "$current_dir"
 
   return 1
 }
