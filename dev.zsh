@@ -1,5 +1,5 @@
 local my_username="TyMick"
-local my_github_users=(github.com/TyMick git.faithlife.dev/TyMick)
+local clone_only_orgs=(github.com/TyMick github.com/LogosBible github.com/LogosBibleLabs)
 
 # Open a local repo in VS Code if it exists on my machine. If it doesn't, search for the repo on GitHub, fork it if it isn't mine, clone it onto my machine, and then open it in VS Code.
 dev() {
@@ -69,9 +69,9 @@ dev() {
   
   mkdir -p ~/code/$domain/$account
   
-  local user
-  for user in ${my_github_users[@]}; do
-    if [[ "$domain/$account" = "$user" ]]; then
+  local org
+  for org in ${clone_only_orgs[@]}; do
+    if [[ "$domain/$account" = "$org" ]]; then
       if gh repo clone $domain/$account/$repo -- ~/code/$domain/$account/$repo; then
         code ~/code/$domain/$account/$repo
         return
