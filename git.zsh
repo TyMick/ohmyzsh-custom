@@ -44,6 +44,7 @@ alias 'gcmsg!'='git commit --amend -m'
 
 # git pull
 alias glomr='git pull origin $(git_main_branch) --rebase'
+alias glomri='git pull origin $(git_main_branch) --rebase=interactive'
 alias glomm='git pull origin $(git_main_branch) --rebase=false'
 
 # git reset
