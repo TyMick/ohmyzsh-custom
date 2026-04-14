@@ -4,13 +4,12 @@
 
 export EDITOR="code --new-window --wait"
 
-# .NET
 export DOTNET_ROOT="/usr/local/opt/dotnet/libexec"
 
-# n
+export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+
 export N_PRESERVE_NPM=1
 
-# Oh My Zsh alias-finder plugin
 export ZSH_ALIAS_FINDER_AUTOMATIC=true
 
 # disabling telemetry
