@@ -1,5 +1,5 @@
 # Also runs nightly (formulae/gems/etc.) via ~/Library/LaunchAgents/com.tymick.update.plist
-# and interactively every Monday morning via ~/Library/LaunchAgents/com.tymick.update-interactive.plist
+# and interactively every weekday morning via ~/Library/LaunchAgents/com.tymick.update-interactive.plist
 function update() {
   local my_gems=(xcpretty)
   local ruby_version_before="$(ruby --version)"
